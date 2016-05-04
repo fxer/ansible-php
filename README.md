@@ -13,6 +13,7 @@ Setup by default to listen on a unix socket instead of a tcp port. Also handles 
 Default settings (see `defaults/main.yml`):
 
     php_fpm_config_path: "/etc/php-fpm.d"
+    php_fpm_run_path: "/var/run/php-fpm"
     php_fpm_listen_owner: "nginx"
     php_fpm_listen_group: "nginx"
     php_fpm_listen_mode: "0660"
