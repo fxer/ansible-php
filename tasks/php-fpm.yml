@@ -1,0 +1,24 @@
+---
+
+- name: Configure php-fpm pools
+  template:
+    src: php-fpm.conf.j2
+    dest: /etc/php-fpm.d/{{ item.key }}.conf
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  with_dict: "{{ php_fpm_pools }}"
+  when: php_enable_php_fpm
+  notify:
+    - restart php-fpm
+
+# Using 'removes=' means this command won't run unless www.conf exists
+# Don't include 'creates=' because we want www.conf renamed even if www.conf.disabled exists
+- name: Disable default php-fpm pool
+  command: >
+    mv {{ php_fpm_config_path }}/www.conf {{ php_fpm_config_path }}/www.conf.disabled
+    removes={{ php_fpm_config_path }}/www.conf
+  when: php_fpm_disable_default_pool and php_enable_php_fpm
+  notify:
+    - restart php-fpm

@@ -1,0 +1,45 @@
+php_packages: ['php-fpm', 'php-mysqlnd', 'php-mcrypt', 'php-xml', 'php-mbstring', 'php-pdo', 'php-cli']
+php_date_timezone: "US/Pacific"
+php_memory_limit: "128M"
+php_upload_max_filesize: "64M"
+php_post_max_size: "32M"
+php_realpath_cache_size: "16K"
+php_max_execution_time: "30"
+php_max_input_time: "60"
+php_display_errors: "Off"
+php_display_startup_errors: "Off"
+php_short_open_tag: "Off"
+php_expose_php: "On"
+php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
+php_sendmail_path: "/usr/sbin/sendmail -t -i"
+php_session_save_handler: "files"
+php_session_save_path: "/tmp"
+php_enable_php_fpm: True
+
+php_fpm_config_path: "/etc/php-fpm.d"
+php_fpm_listen_owner: "nginx"
+php_fpm_listen_group: "nginx"
+php_fpm_listen_mode: "0660"
+php_fpm_user: "nginx"
+php_fpm_group: "nginx"
+php_fpm_pm: "ondemand"
+php_fpm_pm_max_children: 10
+php_fpm_pm_process_idle_timeout: "10s"
+php_fpm_pm_max_requests: 100
+php_fpm_catch_workers_output: "yes"
+
+# Disable default 'www' pool config
+php_fpm_disable_default_pool: False
+
+# Define your php-fpm pools
+# Additionally you can override any php_fpm_* variable on a per-pool basis
+#
+# php_fpm_pools:
+#   www:
+#     php_fpm_pm_max_children: 20
+#     php_fpm_pm: dynamic
+#   myapp:
+#   myapp2:
+
+php_fpm_pools:
+  www:

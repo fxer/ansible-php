@@ -1,0 +1,7 @@
+---
+
+- include: php.yml
+  tags: ['php-ini']
+  
+- include: php-fpm.yml
+  tags: ['php-fpm']

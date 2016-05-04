@@ -1,0 +1,17 @@
+---
+
+- name: Install php and php-fpm packages
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ php_packages }}"
+
+# Simplified role from https://github.com/geerlingguy/ansible-role-php
+- name: Configure php.ini
+  template:
+    src: php.ini.j2
+    dest: /etc/php.ini
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes

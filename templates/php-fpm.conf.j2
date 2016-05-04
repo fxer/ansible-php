@@ -1,0 +1,33 @@
+# Ansible managed config file (don't hand edit, silly, or it will get overwritten)
+[{{ item.key }}]
+
+# Socket settings
+listen = /var/run/php-fpm/{{ item.key }}.sock
+listen.owner = {{ item.value.php_fpm_listen_owner | default(php_fpm_listen_owner) }}
+listen.group = {{ item.value.php_fpm_listen_group | default(php_fpm_listen_group) }}
+listen.mode = {{ item.value.php_fpm_listen_mode | default(php_fpm_listen_mode) }}
+
+# System user
+user = {{ item.value.php_fpm_user | default(php_fpm_user) }}
+group = {{ item.value.php_fpm_group | default(php_fpm_group) }}
+
+# Process manager
+pm = {{ item.value.php_fpm_pm | default(php_fpm_pm) }}
+pm.max_children = {{ item.value.php_fpm_pm_max_children | default(php_fpm_pm_max_children) }}
+pm.max_requests = {{ item.value.php_fpm_pm_max_requests | default(php_fpm_pm_max_requests) }}
+pm.process_idle_timeout = {{ item.value.php_fpm_pm_process_idle_timeout | default(php_fpm_pm_process_idle_timeout) }}
+{% if item.value.php_fpm_pm_start_servers is defined %}
+pm.start_servers = {{ item.value.php_fpm_pm_start_servers }}
+{% endif %}
+{% if item.value.php_fpm_pm_min_spare_servers is defined %}
+pm.min_spare_servers = {{ item.value.php_fpm_pm_min_spare_servers }}
+{% endif %}
+{% if item.value.php_fpm_pm_max_spare_servers is defined %}
+pm.max_spare_servers = {{ item.value.php_fpm_pm_max_spare_servers }}
+{% endif %}
+{% if item.value.php_fpm_pm_status_path is defined %}
+pm.status_path = {{ item.value.php_fpm_pm_status_path }}
+{% endif %}
+
+# Misc
+catch_workers_output = {{ item.value.php_fpm_catch_workers_output | default(php_fpm_catch_workers_output) }}
