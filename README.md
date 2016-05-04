@@ -24,7 +24,7 @@ Default settings (see `defaults/main.yml`):
     php_fpm_pm_max_requests: 100
     php_fpm_catch_workers_output: "yes"
 
-If you would like to disable the default www.conf that is installed on CentOS set this to `True`:
+If you would like to disable the default `www.conf` that is installed on CentOS set this to `True`:
 
     php_fpm_disable_default_pool: False
 
