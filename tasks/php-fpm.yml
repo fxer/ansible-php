@@ -13,12 +13,16 @@
   notify:
     - restart php-fpm
 
-# Using 'removes=' means this command won't run unless www.conf exists
-# Don't include 'creates=' because we want www.conf renamed even if www.conf.disabled exists
-- name: Disable default php-fpm pool
-  command: >
-    mv {{ php_fpm_config_path }}/www.conf {{ php_fpm_config_path }}/www.conf.disabled
-    removes={{ php_fpm_config_path }}/www.conf
+# Have to use an empty www.conf as a placeholder. If we delete www.conf
+# it will be restored the next time the package is updated. No bueno.
+- name: Disable default php-fpm pool (www.conf)
+  copy:
+    src: placeholder.txt
+    dest: "{{ php_fpm_config_path }}/www.conf"
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
   when: php_fpm_disable_default_pool and php_enable_php_fpm
   notify:
     - restart php-fpm

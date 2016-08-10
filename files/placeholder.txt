@@ -1,0 +1,2 @@
+# Ansible managed placeholder file
+# Avoids system package update restoring a default configuration
