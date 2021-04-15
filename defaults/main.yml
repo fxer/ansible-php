@@ -1,4 +1,4 @@
-php_packages: ['php-fpm', 'php-mysqlnd', 'php-mcrypt', 'php-xml', 'php-mbstring', 'php-pdo', 'php-cli']
+php_packages: ['php-fpm']
 php_date_timezone: "US/Pacific"
 php_memory_limit: "128M"
 php_upload_max_filesize: "64M"
